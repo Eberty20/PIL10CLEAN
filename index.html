@@ -13,6 +13,8 @@
     <title>L10 CLEAN</title>
     <!-- CSS -->
     <link rel="stylesheet" href="css/extends.css" />
+    <!-- JS -->
+    <link rel="stylesheet" href="scripts/index.js" />
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,47 +23,72 @@
     rel="stylesheet"/>
 </head>
 <body>
-<!-- navbar -->
+<!-- head navbar -->
 <nav class="navbar">
     <div class="navbar__content max-width mb-0">
       <a href="">
         <img src="assets/LOGO PI.png" alt="L10 CLEAN" />
       </a>
-     <h4>SISTEMA L10 CLEAN HIGIENIZAÇÃO </h4>
+    <h4>SISTEMA L10 CLEAN HIGIENIZAÇÃO </h4>
     </div>
-     </nav>
-    <!-- header -->
-    <header id="header" class="max-width">
-        <div class="header__left">
-        <div class="box">
-          <a class="button" href=""> Cronograma diário </a>
-        </div>
-        </div>
-        <div class="header__left">
-            <div class="box">
-              <a class="button" href=""> Cronograma mensal </a>
+    </nav>
+<!-- side navbar -->
+      <nav id="sidebar">
+            <div id="data">
+                <img src="assets/data.svg" id="data_hoje" alt="Data">
+    
+                <p id="Data_hoje">
+                </p>
             </div>
-            </div>
-        <div class="header__left">
-            <div class="box">
-              <a class="button" href=""> Clientes </a>
-            </div>
-            </div>
-        <div class="header__left">
-        <div class="box">
-            <a class="button" href=""> Compras </a>
+            <div id="hora">
+              <img src="assets/hora.svg" id="hora_hoje" alt="Horário">
+              <p id="Data_hoje">
+              </p>
           </div>
+<!-- hora e data -->
+          <div id="timer">
+            <div id="display">
+              <p id="data"></p>
+              <p id="hora"></p>
+            </div>
+          </div>
+          <script src="scripts/index.js"></script>
+<!-- notificações -->
+          <div> 
+            <p class="notificaçoes">
+              Notificações
+            </p>
+          </div>
+            <button id="open_btn">
+                <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+            </button>
+    </nav>
+<!-- about -->
+      <div id="about">
+        <div id="compras">
+          <a href="">
+          <img src="assets/compras.svg" id="estoque" alt="COMPRAS">
+          </a>
         </div>
-        <div class="header__right">
-            <div class="box">
-                <a class="button" href=""> Estoque </a>
-              </div>
-              </div>
-              <div class="header__right">
-                <div class="box">
-                    <a class="button" href=""> Serviços </a>
-                  </div>
-                  </div>
-      </header>
+        <div id="estoque">
+          <a href="">
+          <img src="assets/estoque.svg" id="estoque" alt="ESTOQUE">
+          </a>
+        </div>
+        <div id="calendario">
+          <a href="projeto/calendar.html">
+          <img src="assets/calendario.svg" id="calendario" alt="CALENDÁRIO">
+          </a>
+        </div>
+        <div id="clientes">
+          <a href="">
+          <img src="assets/clientes.svg" id="clientes" alt="CLIENTES">
+          </a>
+        </div>
+      </div>
+      <!-- footer -->
+      <div id="footer">
+          <p>© 2024 L10 Clean. Todos os direitos reservados.</p>
+        </div>
 </body>
 </html>

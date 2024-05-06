@@ -1,6 +1,8 @@
 @import './variables.css';
 @import './globals.css';
 
+@import './components/sidenav.css';
+@import './components/timer.css';
 @import './components/navbar.css';
 @import './components/header.css';
 @import './components/about.css';

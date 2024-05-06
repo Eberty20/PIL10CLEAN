@@ -5,6 +5,8 @@
     width: 100%;
     z-index: 10;
     background-color: var(--gray);
+    padding-top: 5px;
+    padding-left: -20px;
 }
 
 .navbar .navbar__content {

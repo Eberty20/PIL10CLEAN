@@ -1,0 +1,31 @@
+#about {
+    background-color: var(--gray);
+    height: 550px;
+    width: 1070px;
+    border-radius: 18px 18px 18px 18px;
+    margin-left: 300px;
+
+}
+
+#compras {
+    margin-left: 200px;
+    padding: 15px;
+    float: left;
+}
+#estoque {
+    margin-right: 100px;
+    padding: 15px;
+    float: right;
+}
+#calendario {
+    margin-top: 20px;
+    margin-left: 100px;
+    padding: 12px;
+    float: left;
+}
+#clientes {
+    margin-top: 20px;
+    margin-right: 100px;
+    padding: 12px;
+    float: right;
+}
