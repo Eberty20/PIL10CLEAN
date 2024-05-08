@@ -7,23 +7,12 @@
     
 
 }
-
-#about .about__left a{
-    flex: 1;
-    padding: 4rem 4rem 4rem 4rem;
-    background: var(--alt);
-  }
-
-  .about .about__right {
-
-    flex: 1;
-  } 
 #about .imagens img  
-    {width: 20vw;
-        height: 20vh;
-        margin: auto;
-        display: block;
-       }
+{width: 17vw;
+    height: 17vh;
+    margin: auto;
+    display: block;
+   }
 
 
 @media only screen and (max-width: 768px) {
