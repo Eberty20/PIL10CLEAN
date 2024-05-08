@@ -18,7 +18,7 @@
 @media only screen and (max-width: 768px) {
     #about {
         background-color: var(--gray);
-        height: 83vh;
+        height: 80vh;
         width: 60vw;
         border-radius: 18px 0px 0px 18px;
         margin-left: 40vw;
