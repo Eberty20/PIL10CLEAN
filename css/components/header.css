@@ -67,3 +67,26 @@ header .box .button:hover {
   cursor: pointer;
 }
 
+@media only screen and (max-width: 768px) {
+  header {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  header .header__left p {
+    margin: 2rem auto 4rem;
+  }
+  header .box .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+}
+header .header__left {
+  margin-top: 0;
+}
+header .header__right {
+  margin-top: 0;
+}
+
+}

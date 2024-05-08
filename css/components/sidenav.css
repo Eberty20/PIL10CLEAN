@@ -6,12 +6,12 @@
     flex-direction: column;
     justify-content: space-between;
     background-color: var(--gray);
-    height: 600px;
+    height: 70vh;
     border-radius: 0px 18px 18px 0px;
     position: relative;
     transition: all .5s;
     min-width: 82px;
-    width: 230px;
+    width: 15vw;
     z-index: 2;
 }
 
@@ -41,5 +41,27 @@
     float: right;
 }
 
+@media only screen and (max-width: 768px) {
+    #sidebar {
+        float: left;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: var(--gray);
+        height: 80vh;
+        border-radius: 0px 18px 18px 0px;
+        position: relative;
+        transition: all .5s;
+        min-width: 82px;
+        width: 35vw;
+        z-index: 2;
+    }
 
-
+    #display {
+        padding-left: 30px;
+        padding-right:  30px;
+        margin-top: -50px;
+        width: 100%;
+        font-size: 12pt;
+        
+    }
+}

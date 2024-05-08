@@ -1,31 +1,26 @@
 #about {
     background-color: var(--gray);
-    height: 550px;
-    width: 1070px;
+    height: 70vh;
+    width: 70vw;
     border-radius: 18px 18px 18px 18px;
-    margin-left: 300px;
+    margin-left: 20vw;
 
 }
 
-#compras {
-    margin-left: 200px;
-    padding: 15px;
-    float: left;
-}
-#estoque {
-    margin-right: 100px;
-    padding: 15px;
-    float: right;
-}
-#calendario {
-    margin-top: 20px;
-    margin-left: 100px;
-    padding: 12px;
-    float: left;
-}
-#clientes {
-    margin-top: 20px;
-    margin-right: 100px;
-    padding: 12px;
-    float: right;
+
+@media only screen and (max-width: 768px) {
+    #about {
+        background-color: var(--gray);
+        height: 80vh;
+        width: 60vw;
+        border-radius: 18px 0px 0px 18px;
+        margin-left: 40vw;
+    }
+
+    #about .imagens img  
+    {width: 20vw;
+        height: 20vh;
+        margin: auto;
+        display: block;
+       }
 }
