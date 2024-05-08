@@ -18,10 +18,11 @@
 @media only screen and (max-width: 768px) {
     #about {
         background-color: var(--gray);
-        height: 80vh;
+        height: 83vh;
         width: 60vw;
         border-radius: 18px 0px 0px 18px;
         margin-left: 40vw;
+        margin-top: 5rem;
     }
 
     #about .imagens img  
