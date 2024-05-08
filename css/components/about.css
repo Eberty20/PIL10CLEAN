@@ -4,8 +4,26 @@
     width: 70vw;
     border-radius: 18px 18px 18px 18px;
     margin-left: 20vw;
+    
 
 }
+
+#about .about__left a{
+    flex: 1;
+    padding: 4rem 4rem 4rem 4rem;
+    background: var(--alt);
+  }
+
+  .about .about__right {
+
+    flex: 1;
+  } 
+#about .imagens img  
+    {width: 20vw;
+        height: 20vh;
+        margin: auto;
+        display: block;
+       }
 
 
 @media only screen and (max-width: 768px) {
