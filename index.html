@@ -73,26 +73,46 @@
 <!-- about -->
 <div id="about">
   <div class="imagens">
-      <a href="">
-          <img src="assets/compras.svg" alt="Compras" id="compras" onmouseover="changeImage(this, 'comprac.svg')" onmouseout="changeImage(this, 'compras.svg')">
-      </a>
+    <a href="">
+      <img src="assets/compras.svg" alt="Compras" id="compras">
+    </a>
   </div>
   <div class="imagens">
-      <a href="">
-          <img src="assets/estoque.svg" alt="Estoque" id="estoque" onmouseover="changeImage(this, 'estoquec.svg')" onmouseout="changeImage(this, 'estoque.svg')">
-      </a>
+    <a href="">
+      <img src="assets/estoque.svg" alt="Estoque" id="estoque">
+    </a>
   </div>
   <div class="imagens">
-      <a href="projeto/calendar.html">
-          <img src="assets/calendario.svg" alt="Calendário" id="calendario" onmouseover="changeImage(this, 'calendarioc.svg')" onmouseout="changeImage(this, 'calendario.svg')">
-      </a>
+    <a href="projeto/calendar.html">
+      <img src="assets/calendario.svg" alt="Calendário" id="calendario">
+    </a>
   </div>
   <div class="imagens">
-      <a href="">
-          <img src="assets/clientes.svg" alt="Clientes" id="clientes" onmouseover="changeImage(this, 'clientesc.svg')" onmouseout="changeImage(this, 'clientes.svg')">
-      </a>
+    <a href="">
+      <img src="assets/clientes.svg" alt="Clientes" id="clientes">
+    </a>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const imagens = document.querySelectorAll('.imagens img');
+
+    imagens.forEach(imagem => {
+      const originalSrc = imagem.getAttribute('src');
+      const id = imagem.getAttribute('id');
+      const hoverSrc = `assets/${id}c.svg`;
+
+      imagem.addEventListener('mouseover', () => {
+        imagem.setAttribute('src', hoverSrc);
+      });
+
+      imagem.addEventListener('mouseout', () => {
+        imagem.setAttribute('src', originalSrc);
+      });
+    });
+  });
+</script>
       <!-- footer -->
       <div id="footer">
           <p>© 2024 L10 Clean. Todos os direitos reservados.</p>
