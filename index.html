@@ -34,66 +34,65 @@
     </nav>
 <!-- side navbar -->
       <nav id="sidebar">
-            <div id="data">
-                <img src="assets/data.svg" id="data_hoje" alt="Data">
-    
-                <p id="Data_hoje">
-                </p>
+        <div class="container" >
+            <div id="datalogo">
+              <a href="">
+                <img src="assets/data.svg" id="" alt="Data">
+              </a>
             </div>
-            <div id="hora">
-              <img src="assets/hora.svg" id="hora_hoje" alt="Horário">
-              <p id="Data_hoje">
-              </p>
+            <div id="horalogo">
+              <a href="">
+              <img src="assets/hora.svg" id="" alt="Horário">
+            </a>
           </div>
+        </div>
 <!-- hora e data -->
+          <div class="container2">
           <div id="timer">
             <div id="display">
-              <p id="data"></p>
-              <p id="hora"></p>
+              <span id="data"></span>
+              <hr>
+              <span id="hora"></span>
             </div>
           </div>
+        </div>
           <script src="scripts/index.js"></script>
 <!-- notificações -->
-          <div> 
+          <div id="note" > 
             <hr>
             <p class="notificaçoes">
               Notificações
             </p>
             <hr>
           </div>
-            <button id="open_btn">
-                <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
-            </button>
+          <div id="notas">
+            <p>vazio</p>
+          </div>
     </nav>
+
 <!-- about -->
-      <div id="about">
-        <div class="imagens">
-        <div class="about__left">
-        <div id="compras">
-          <a href="">
-          <img src="assets/compras.svg" id="estoque" alt="COMPRAS">
-          </a>
-        </div>
-        <div id="estoque">
-          <a href="">
-          <img src="assets/estoque.svg" id="estoque" alt="ESTOQUE">
-          </a>
-        </div>
-      </div>
-        <div class="about__right">
-        <div id="calendario">
-          <a href="projeto/calendar.html">
-          <img src="assets/calendario.svg" id="calendario" alt="CALENDÁRIO">
-          </a>
-        </div>
-        <div id="clientes">
-          <a href="">
-          <img src="assets/clientes.svg" id="clientes" alt="CLIENTES">
-          </a>
-        </div>
-      </div>
-      </div>
-      </div>
+<div id="about">
+  <div class="imagens">
+      <a href="">
+          <img src="assets/compras.svg" alt="Compras" id="compras" onmouseover="changeImage(this, 'comprac.svg')" onmouseout="changeImage(this, 'compras.svg')">
+      </a>
+  </div>
+  <div class="imagens">
+      <a href="">
+          <img src="assets/estoque.svg" alt="Estoque" id="estoque" onmouseover="changeImage(this, 'estoquec.svg')" onmouseout="changeImage(this, 'estoque.svg')">
+      </a>
+  </div>
+  <div class="imagens">
+      <a href="projeto/calendar.html">
+          <img src="assets/calendario.svg" alt="Calendário" id="calendario" onmouseover="changeImage(this, 'calendarioc.svg')" onmouseout="changeImage(this, 'calendario.svg')">
+      </a>
+  </div>
+  <div class="imagens">
+      <a href="">
+          <img src="assets/clientes.svg" alt="Clientes" id="clientes" onmouseover="changeImage(this, 'clientesc.svg')" onmouseout="changeImage(this, 'clientes.svg')">
+      </a>
+  </div>
+</div>
       <!-- footer -->
       <div id="footer">
           <p>© 2024 L10 Clean. Todos os direitos reservados.</p>

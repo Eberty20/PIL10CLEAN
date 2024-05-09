@@ -1,3 +1,9 @@
+
+function changeImage(element, newSrc) {
+    element.src = "assets/" + newSrc;
+}
+
+
 function moveRelogio() {
   let momentoAtual = new Date();
 

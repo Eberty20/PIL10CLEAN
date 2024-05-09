@@ -4,8 +4,8 @@
 #sidebar {
     float: left;
     flex-direction: column;
-    justify-content: space-between;
-    background-color: var(--gray);
+    justify-content: space-around;
+    background-image: linear-gradient(#A7A7A7,#D9D9D9);
     height: 70vh;
     border-radius: 0px 18px 18px 0px;
     position: relative;
@@ -15,12 +15,32 @@
     z-index: 2;
 }
 
-#data {
+.container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
     padding-left: 10px;
+    align-items: center;
+    padding-bottom: 10px;
+    min-height: 2vh;
+    
 }
-#hora {
-    padding-left: 10px;
+.container2 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: first baseline;
+    min-height: 2vh;
+}
 
+#datalogo {
+    
+    z-index: 1;
+
+    
+}
+#horalogo {
+    z-index: 1;
+    margin-bottom: 5px;
 }
 
 #sidebar .notificaçoes {
@@ -28,18 +48,31 @@
     background-color: var(--primary-color);
 }
 
+#notas {
+    text-align: center;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 0px 0px 18px 0px;
+    height: 52vh;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+
+}
+
 #timer{
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
 }
 #display {
-    padding-left: 30px;
-    padding-right:  30px;
-    margin-top: -60px;
-    width: 100%;
     font-size: 15pt;
     float: right;
+    padding-right: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
+
+
 
 @media only screen and (max-width: 768px) {
     #sidebar {
@@ -57,11 +90,41 @@
     }
 
     #display {
-        padding-left: 30px;
-        padding-right:  30px;
-        margin-top: -50px;
-        width: 100%;
-        font-size: 12pt;
+        font-size: 11pt;
+        padding-right: 10px;
+        min-height: 2vh;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .container {
+        min-height: 2vh;
         
+    }
+
+
+    #datalogo img{
+        z-index: 1;
+        width: 18px;
+        height: 18px;
+    
+        
+    }
+    #horalogo img{
+        z-index: 1;
+        width: 18px;
+        height: 18px;
+    }
+
+    #notas {
+        text-align: center;
+        background-color: white;
+        border: 1px solid white;
+        border-radius: 0px 0px 18px 0px;
+        height: 63vh;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+    
     }
 }
