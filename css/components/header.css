@@ -38,6 +38,35 @@ header .content p {
   margin-bottom: 3.2rem;
 }
 
+.line {
+  border-right: 0.2rem solid var(--primary-color);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.typing {
+  animation: line-typing 500ms steps(40) infinite normal,
+    typing 2s steps(40) 2s normal backwards;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 27.5rem;
+  }
+}
+
+@keyframes line-typing {
+  from {
+    border-right-color: var(--primary-color);
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
+
 header .header__left .line {
   border-right: 0.2rem solid var(--primary-color);
   white-space: nowrap;
