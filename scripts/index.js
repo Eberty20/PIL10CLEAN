@@ -66,3 +66,21 @@ function moveRelogio() {
   pegarData();
   // Evocar a função moveRelogio
   moveRelogio();
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const imagens = document.querySelectorAll('.imagens img');
+
+    imagens.forEach(imagem => {
+      const originalSrc = imagem.getAttribute('src');
+      const id = imagem.getAttribute('id');
+      const hoverSrc = `assets/${id}c.svg`;
+
+      imagem.addEventListener('mouseover', () => {
+        imagem.setAttribute('src', hoverSrc);
+      });
+
+      imagem.addEventListener('mouseout', () => {
+        imagem.setAttribute('src', originalSrc);
+      });
+    });
+  });
