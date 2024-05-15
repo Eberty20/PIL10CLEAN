@@ -1,18 +1,28 @@
-{% extends "base.html" %}
+{% include "includes/nav3.html" %}
 
 {% block content %}
 
-  <h2>Estoque {{ titulo }}
-    <span class="pull-right">
-      <a href="{% url url_add %}">
-        <button type="button" class="btn btn-primary">
-          <span class="fa fa-plus"></span> Adicionar
-        </button>
-      </a>
-    </span>
-  </h2>
+<div id=conest>
+  <div class=ensa2>
+    <a  href="{% url 'produto:produto_list' %}">Produtos</a>
+  </div>
+    <div class="ensa2">
+    <a  href="{% url 'estoque:estoque_saida_list' %}">Saída</a>
+  </div>
+</div>
 
-  {% if object_list %}
+
+  <div id="page-header2">
+    <h2>Estoque {{ titulo }}
+      <span class="pull-right">
+        <a href="{% url url_add %}">
+          <button  id="button"  type="button" class="btn btn-primary">
+            <span class="fa fa-plus"></span> Adicionar
+          </button>
+        </a>
+      </span>
+    </h2>
+    {% if object_list %}
     <table class="table table-striped">
       <thead>
         <tr>
@@ -38,5 +48,6 @@
   {% else %}
     <p class="alert alert-warning">Sem itens na lista.</p>
   {% endif %}
+</div>
 
 {% endblock content %}
