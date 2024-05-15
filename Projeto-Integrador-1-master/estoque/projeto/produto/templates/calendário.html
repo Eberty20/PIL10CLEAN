@@ -1,0 +1,40 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário de Tarefas</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/calendario.css' %}">
+
+    {% block css %}{% endblock css %}
+
+    <script src="{% static 'js/index.js' %}"></script>
+</head>
+<body>
+    <div class="calendar">
+        <div class="month">
+            <h2>Maio de 2024</h2>
+        </div>
+        <div class="days">
+            <!-- Espaço para os dias do mês -->
+        </div>
+    </div>
+
+    <div id="task-form">
+        <input type="text" id="task-input" placeholder="Digite sua tarefa...">
+        <input type="date" id="task-date">
+        <button onclick="addTask()">Adicionar Tarefa</button>
+    </div>
+
+    <ul id="task-list">
+        <!-- Lista de tarefas -->
+    </ul>
+
+    <script src="index.js"></script>
+</body>
+</html>
+
