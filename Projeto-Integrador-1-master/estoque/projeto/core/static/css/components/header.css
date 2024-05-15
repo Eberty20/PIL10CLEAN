@@ -1,0 +1,121 @@
+header {
+  display: block;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .header__left {
+  max-width: 40rem;
+  flex: 1;
+  display: inline-block;
+  align-items: center;
+}
+
+header .header__right {
+  max-width: 40rem;
+  flex: 1;
+  display: inline-block;
+}
+
+header .header__left p {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  max-width: 50rem;
+}
+
+header .header__right .header__image {
+  position: relative;
+  line-height: 0;
+}
+
+header .content p {
+  display: inline-flex;
+
+  font-size: 2.5rem;
+  line-height: 150%;
+  font-weight: bold;
+
+  margin-bottom: 3.2rem;
+}
+
+.line {
+  border-right: 0.2rem solid var(--primary-color);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.typing {
+  animation: line-typing 500ms steps(40) infinite normal,
+    typing 2s steps(40) 2s normal backwards;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 27.5rem;
+  }
+}
+
+@keyframes line-typing {
+  from {
+    border-right-color: var(--primary-color);
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
+
+header .header__left .line {
+  border-right: 0.2rem solid var(--primary-color);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+header .box .button {
+  background: none;
+  border: 0.2rem solid var(--primary-color);
+  padding: 1.4rem 3rem 1.4rem 3rem;
+  display: inline-block;
+  align-items: center;
+  border-radius: 0.5rem;
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  transition: 400ms;
+}
+
+header .box .button:hover {
+  color: #fff;
+  background-color: var(--primary-color);
+  border: 0.2rem solid var(--black);
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  header {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  header .header__left p {
+    margin: 2rem auto 4rem;
+  }
+  header .box .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+}
+header .header__left {
+  margin-top: 0;
+}
+header .header__right {
+  margin-top: 0;
+}
+
+}
