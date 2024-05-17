@@ -1,10 +1,38 @@
-{% extends "base.html" %}
-
+{% include "includes/nav3.html" %}
 {% block content %}
 
+<div id=conest2>
   <a href="{% url 'produto:produto_list' %}">Voltar</a>
+</div>
 
-  <h1>{{ object }}
+  <div id="contcentro">
+    <div id="page-header4">
+      <div>
+  <h1 class="produto">{{ object }} 
+  </h1>
+
+  <div >
+    <table class="table table-user-information">
+      <tbody>
+        
+        <tr>
+          <th >NCM</th>
+          <td>{{ object.ncm }}</td>
+        </tr>
+        <tr>
+          <th >Preço</th>
+          <td>R$ {{ object.preco }}</td>
+        </tr>
+        <tr>
+          <th >Estoque</th>
+          <td>{{ object.estoque }}</td>
+        </tr>
+        <tr>
+          <th >Estoque mínimo</th>
+          <td>{{ object.estoque_minimo }}</td>
+        </tr>
+      </tbody>
+    </table>
     <span class="pull-right">
       <a href="{% url 'produto:produto_edit' object.pk %}">
         <button type="button" class="btn btn-success">
@@ -12,39 +40,9 @@
         </button>
       </a>
     </span>
-  </h1>
-
-  <div class="col-sm-6">
-    <table class="table table-user-information">
-      <tbody>
-        <tr>
-          <th class="text-right">Importado</th>
-          <td>
-            {% if object.importado %}
-              <i class="fa fa-check-circle ok"></i>
-            {% else %}
-              <i class="fa fa-minus-circle no"></i>
-            {% endif %}
-          </td>
-        </tr>
-        <tr>
-          <th class="text-right">NCM</th>
-          <td>{{ object.ncm }}</td>
-        </tr>
-        <tr>
-          <th class="text-right">Preço</th>
-          <td>R$ {{ object.preco }}</td>
-        </tr>
-        <tr>
-          <th class="text-right">Estoque</th>
-          <td>{{ object.estoque }}</td>
-        </tr>
-        <tr>
-          <th class="text-right">Estoque mínimo</th>
-          <td>{{ object.estoque_minimo }}</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
+</div>
+</div>
+</div>
 
 {% endblock content %}

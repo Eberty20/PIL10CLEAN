@@ -1,9 +1,16 @@
-{% extends "base.html" %}
+{% include "includes/nav3.html" %}
 {% load static %}
 {% load widget_tweaks %}
 
 {% block content %}
 
+<div id=conest2>
+  <a href="{% url 'produto:produto_list' %}">Voltar</a>
+</div>
+
+
+<div id="contcentro">
+<div id="page-header3">
   <form method="POST" novalidate>
     {% csrf_token %}
     {% for field in form.visible_fields %}
@@ -23,6 +30,8 @@
     {% endfor %}
     <button type="submit" class="btn btn-success">Cadastrar</button>
   </form>
+</div>
+</div>
 
 {% endblock content %}
 
