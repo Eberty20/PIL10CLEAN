@@ -22,7 +22,6 @@ body {
 }
 
 .navbar {
-  
     position: fixed;
     top: 0;
     left: 0;
@@ -93,7 +92,7 @@ body {
 
 #search{
   margin-top: 15vh;
-  margin-left: 5vh;
+  margin-left: 7vh;
   font-size: 1.6rem;
   
 }
