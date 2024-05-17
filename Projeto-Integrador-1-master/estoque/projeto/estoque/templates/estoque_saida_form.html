@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% include "includes/nav3.html" %}
 {% load static %}
 {% load widget_tweaks %}
 {% load bootstrap %}
@@ -15,13 +15,19 @@
 
 {% block content %}
 
-  <a href="{% url 'estoque:estoque_saida_list' %}">Voltar</a>
+<div id=conest2>
+<a href="{% url 'estoque:estoque_saida_list' %}">Voltar</a>
+</div>
 
-  <div class="row">
+<div id="contcentro">
+  <div id="page-header3">
+  
+    
+  <div >
     <div class="cols">
-      <form method="POST" novalidate>
-        {% csrf_token %}
-        <legend style="border-bottom: 1px solid #e5e5e5;">Estoque Saída</legend>
+      
+        
+        <legend class="titulo"   style="border-bottom: 1px solid #e5e5e5;">Estoque Saída</legend>
 
         <div class="row">
           <div class="col-sm-6">
@@ -43,10 +49,14 @@
             {{ formset.management_form }}
           </div>
         </div>
-
+        </div>
+      
+       
+      
         <div class="row">
           <div class="col-sm-12">
-            <legend style="border-bottom: 1px solid #e5e5e5;">Produtos</legend>
+            <legend class="titulo" style="border-bottom: 1px solid #e5e5e5;">Produtos</legend>
+            <div class="disc">
             <div id="estoque" class="form-inline">
               {% for item_estoque_form in formset %}
                 <div id="item-{{ forloop.counter0 }}" class="form-group">
@@ -56,7 +66,7 @@
             </div>
           </div>
         </div>
-
+      </div>
         <span id="add-item" class="btn btn-info" style="margin-top: 10px;">
           <i class="fa fa-plus"></i> Adicionar
         </span>

@@ -1,37 +1,44 @@
-{% extends "base.html" %}
+{% include "includes/nav3.html" %}
 
 {% block content %}
 
+
+<div id=conest2>
   {% if object.movimento == 'e' %}
     <a href="{% url 'estoque:estoque_entrada_list' %}">Voltar</a>
   {% else %}
     <a href="{% url 'estoque:estoque_saida_list' %}">Voltar</a>
   {% endif %}
-
+</div>
+  
+  <div id="contcentro">
+    <div id="page-header3">
   {% if object.movimento == 'e' %}
     <h1>Entrada: {{ object }}</h1>
   {% else %}
     <h1>Saída: {{ object }}</h1>
   {% endif %}
 
-  <div class="col-sm-6">
+  
+  <div >
     <table class="table table-user-information">
       <tbody>
         <tr>
-          <th class="text-right">NF</th>
+          <th class="col-sm-5">NF</th>
           <td>{{ object.nf_formated }}</td>
         </tr>
         <tr>
-          <th class="text-right">Data</th>
+          <th class="col-sm-5">Data</th>
           <td>{{ object.created }}</td>
         </tr>
         <tr>
-          <th class="text-right">Funcionário</th>
+          <th class="col-sm-5">Funcionário</th>
           <td>{{ object.funcionario.first_name }}</td>
         </tr>
       </tbody>
     </table>
   </div>
+
 
   <table class="table table-striped">
     <thead>
@@ -51,5 +58,6 @@
       {% endfor %}
     </tbody>
   </table>
-
+</div>
+</div>
 {% endblock content %}
