@@ -1,2 +1,22 @@
-{% extends "base2.html" %}
+{% include "includes/nav3.html" %}
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Produtos com Estoque Baixo</title>
+</head>
+<body>
+
+    <div id="contcentro">
+        <div id="page-header3">
+            <h1>Produtos com Estoque Baixo</h1>
+            <ul>
+                {% for produto in produtos %}
+                    <li>{{ produto.produto }} - Estoque: {{ produto.estoque }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
