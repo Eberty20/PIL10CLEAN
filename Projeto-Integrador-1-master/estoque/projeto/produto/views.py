@@ -1,7 +1,7 @@
 import csv
 import io
 from datetime import datetime
-
+from projeto.produto.models import Produto
 import pandas as pd
 from django.contrib import messages
 from django.db.models import Q
@@ -9,11 +9,11 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import CreateView, ListView, UpdateView
-
+from django.db.models import F  # Importação adicionada
 from projeto.produto.actions.export_xlsx import export_xlsx
 from projeto.produto.actions.import_xlsx import \
     import_xlsx as action_import_xlsx
-
+from django.http import JsonResponse
 from .forms import ProdutoForm
 from .models import Produto
 
@@ -159,7 +159,7 @@ def exportar_produtos_xlsx(request):
         'categoria__categoria',
     )
     columns = ('Importado', 'NCM', 'Produto', 'Preço',
-               'Estoque', 'Estoque mínimo', 'Categoria')
+        'Estoque', 'Estoque mínimo', 'Categoria')
     response = export_xlsx(model, filename_final, queryset, columns)
     return response
 
@@ -183,10 +183,18 @@ def import_csv_with_pandas(request):
     return HttpResponseRedirect(reverse('produto:produto_list'))
 
 def compras(request):
-    return render(request, 'compras.html')
+    produtos = Produto.objects.filter(estoque__lte=F('estoque_minimo'))
+    return render(request, 'compras.html',  {'produtos': produtos})
 
 def calendário(request):
     return render(request, 'calendário.html')
 
 def clientes(request):
     return render(request, 'clientes.html')
+
+def index(request):
+    # Recupera os produtos com estoque baixo
+    produtos = Produto.objects.filter(estoque__lte=F('estoque_minimo'))
+    
+    # Agora, vamos renderizar a página principal (index.html) e passar os produtos com estoque baixo para o contexto do template
+    return render(request, 'index.html', {'produtos': produtos})

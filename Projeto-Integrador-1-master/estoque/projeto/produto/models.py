@@ -1,6 +1,14 @@
 from django.db import models
 from django.urls import reverse_lazy
 
+class Categoria(models.Model):
+    categoria = models.CharField(max_length=100, unique=True)
+
+    class Meta:
+        ordering = ('categoria',)
+
+    def __str__(self):
+        return self.categoria
 
 class Produto(models.Model):
     importado = models.BooleanField(default=False)
@@ -11,7 +19,7 @@ class Produto(models.Model):
     estoque_minimo = models.PositiveIntegerField('estoque mínimo', default=0)
     data = models.DateField(null=True, blank=True)
     categoria = models.ForeignKey(
-        'Categoria',
+        Categoria,
         on_delete=models.SET_NULL,
         null=True,
         blank=True
@@ -33,12 +41,6 @@ class Produto(models.Model):
             'estoque': self.estoque,
         }
 
+    def estoque_baixo(self):
+        return self.estoque <= self.estoque_minimo
 
-class Categoria(models.Model):
-    categoria = models.CharField(max_length=100, unique=True)
-
-    class Meta:
-        ordering = ('categoria',)
-
-    def __str__(self):
-        return self.categoria
