@@ -1,3 +1,23 @@
+.scroll-horizontal {
+  overflow-x: auto;
+  white-space: nowrap; /* Evita quebrar a linha para que o texto longo não seja quebrado */
+}
+
+.notificacao {
+  border: 1px solid #ccc;
+  padding: 3px;
+  margin-bottom: 10px;
+  background-color: #F58634;
+}
+
+.notificacao p {
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adiciona reticências (...) quando o texto é cortado */
+}
+
+
+
+
 * {
     margin: 0;
     padding: 0;

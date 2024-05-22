@@ -1,4 +1,25 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const linksNotificacoes = document.querySelectorAll('.link-notificacao');
 
+    linksNotificacoes.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // Previne o comportamento padrão do link
+            
+            const idNotificacao = this.getAttribute('data-id');
+            const notificacao = document.getElementById('notificacao' + idNotificacao);
+
+            // Aqui você pode enviar uma solicitação AJAX para remover a notificação do banco de dados
+            // Por enquanto, apenas vamos removê-la da interface do usuário
+            notificacao.remove();
+
+            // Enviar solicitação AJAX para excluir a notificação do banco de dados
+            fetch(`/excluir-notificacao/${idNotificacao}/`)
+                .then(response => response.json())
+                .then(data => console.log(data)) // Exibir mensagem de resposta (opcional)
+                .catch(error => console.error('Erro:', error));
+        });
+    });
+});
 document.addEventListener('DOMContentLoaded', function () {
     // Selecione todas as imagens dentro de elementos com a classe 'imagens'
     const imagens = document.querySelectorAll('.imagens img');

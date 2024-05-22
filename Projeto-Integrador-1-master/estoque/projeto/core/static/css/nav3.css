@@ -114,7 +114,7 @@ body {
   flex-direction: row;
   font-size: 1.6rem;
   float: right;
-  
+  color: #ffffff;
 }
 
 #conest2{
@@ -123,6 +123,17 @@ body {
   margin-right: 26vw;
   margin-bottom: -7vh;
   font-size: 1.6rem;
+  color: #ffffff;
+}
+
+#conest3{
+  margin-right: 3vw;
+  margin-top: -7vh;
+  margin-bottom: 1vh;
+  display: flex;
+  flex-direction: row;
+  font-size: 1.6rem;
+  float: right;
   color: #ffffff;
 }
 
@@ -158,11 +169,23 @@ body {
 }
 
 #button{
+  
   margin-bottom: 3vh;
   margin-right: 3vh;
   background-color: #38b6ff;
   border: 12 pix solid #38b6ff;
   font-size: 1.6rem;
+}
+
+#imprimir{
+  margin-top: 2vh;
+  margin-left: 25vw;
+  margin-bottom: -85vh;
+  margin-right: 3vw;
+  background-color: #38b6ff;
+  border: 12 pix solid #38b6ff;
+  font-size: 1.6rem;
+  float: left;
 }
 
 .titulo {
