@@ -34,4 +34,6 @@ urlpatterns = [
     path('entrada/', include(entrada_patterns)),
     path('saida/', include(saida_patterns)),
     path('entrega/', include(entrega_patterns)),
+    path('estoque_entrada_list/', v.estoque_entrada_list, name='estoque_entrada_list'),
+    path('estoque_saida_list/', v.estoque_saida_list, name='estoque_saida_list'),
 ]
