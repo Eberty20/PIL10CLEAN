@@ -23,4 +23,5 @@ urlpatterns = [
     path('estoque/', include('projeto.estoque.urls')),
     path('admin/', admin.site.urls),
     path('logout/', LogoutView.as_view(), name='logout'),
+    
 ]
