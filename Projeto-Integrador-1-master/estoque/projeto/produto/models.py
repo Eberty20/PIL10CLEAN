@@ -44,3 +44,8 @@ class Produto(models.Model):
     def estoque_baixo(self):
         return self.estoque <= self.estoque_minimo
 
+
+
+    
+    
+   

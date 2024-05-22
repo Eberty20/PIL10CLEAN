@@ -4,19 +4,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Produtos com Estoque Baixo</title>
+    <title>Produtos com estoque baixo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
 <body>
 
+    <!-- Botão de Impressão -->
+    <button id="imprimir">Imprimir Lista</button>
+
+    <div id=conest2>
+        <a href="{% url 'core:index' %}">Voltar</a>
+      </div>
+
     <div id="contcentro">
         <div id="page-header3">
-            <h1>Produtos com Estoque Baixo</h1>
+            <h1>Produtos com estoque baixo</h1>
             <ul>
                 {% for produto in produtos %}
-                    <li>{{ produto.produto }} - Estoque: {{ produto.estoque }}</li>
+                    <tr><td>
+                        <li>{{ produto.produto }} - Estoque: {{ produto.estoque }}</li>
+                    </td></tr>
                 {% endfor %}
             </ul>
         </div>
     </div>
+
+    <script>
+        // Função para imprimir a lista quando o botão for clicado
+        function imprimirLista() {
+            // Cria um novo documento PDF
+            const doc = new jsPDF();
+
+            // Lista de produtos com baixo estoque
+            const produtos = document.querySelectorAll('#page-header3 li');
+
+            // Inicia o conteúdo do PDF
+            let y = 10; // Posição vertical inicial
+            produtos.forEach(produto => {
+                // Adiciona cada produto à lista do PDF
+                doc.text(10, y, produto.textContent);
+                y += 10; // Incrementa a posição vertical
+            });
+
+            // Salva ou imprime o PDF
+            doc.save('lista_produtos_baixo_estoque.pdf');
+        }
+
+        // Adiciona o ouvinte de evento quando o DOM estiver totalmente carregado
+        document.addEventListener("DOMContentLoaded", function(event) {
+            document.getElementById('imprimir').addEventListener('click', imprimirLista);
+        });
+    </script>
+
 </body>
 </html>

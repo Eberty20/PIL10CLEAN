@@ -1,21 +1,19 @@
 import csv
 import io
 from datetime import datetime
-from projeto.produto.models import Produto
-import pandas as pd
-from django.contrib import messages
-from django.db.models import Q
-from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.views.generic import CreateView, ListView, UpdateView
-from django.db.models import F  # Importação adicionada
-from projeto.produto.actions.export_xlsx import export_xlsx
-from projeto.produto.actions.import_xlsx import \
-    import_xlsx as action_import_xlsx
-from django.http import JsonResponse
-from .forms import ProdutoForm
+from django.contrib import messages
+from django.db.models import F, Q
 from .models import Produto
+from .forms import ProdutoForm
+from projeto.produto.actions.export_xlsx import export_xlsx
+from projeto.produto.actions.import_xlsx import import_xlsx as action_import_xlsx
+import pandas as pd
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 
 
 def produto_list(request):
@@ -27,7 +25,6 @@ def produto_list(request):
     context = {'object_list': objects}
     return render(request, template_name, context)
 
-
 class ProdutoList(ListView):
     model = Produto
     template_name = 'produto_list.html'
@@ -37,12 +34,8 @@ class ProdutoList(ListView):
         queryset = super(ProdutoList, self).get_queryset()
         search = self.request.GET.get('search')
         if search:
-            queryset = queryset.filter(
-                Q(produto__icontains=search) |
-                Q(ncm__icontains=search)
-            )
+            queryset = queryset.filter(Q(produto__icontains=search) | Q(ncm__icontains=search))
         return queryset
-
 
 def produto_detail(request, pk):
     template_name = 'produto_detail.html'
@@ -50,48 +43,38 @@ def produto_detail(request, pk):
     context = {'object': obj}
     return render(request, template_name, context)
 
-
 def produto_add(request):
     form = ProdutoForm(request.POST or None)
     template_name = 'produto_form2.html'
 
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('produto:produto_list'))
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('produto:produto_list'))
 
     context = {'form': form}
     return render(request, template_name, context)
-
 
 class ProdutoCreate(CreateView):
     model = Produto
     template_name = 'produto_form.html'
     form_class = ProdutoForm
 
-
 class ProdutoUpdate(UpdateView):
     model = Produto
     template_name = 'produto_form.html'
     form_class = ProdutoForm
 
-
 def produto_json(request, pk):
-    ''' Retorna o produto, id e estoque. '''
     produto = Produto.objects.filter(pk=pk)
     data = [item.to_dict_json() for item in produto]
     return JsonResponse({'data': data})
 
-
 def save_data(data):
-    '''
-    Salva os dados no banco.
-    '''
     aux = []
     for item in data:
         produto = item.get('produto')
         ncm = str(item.get('ncm'))
-        importado = True if item.get('importado') == 'True' else False
+        importado = item.get('importado') == 'True'
         preco = item.get('preco')
         estoque = item.get('estoque')
         estoque_minimo = item.get('estoque_minimo')
@@ -106,14 +89,11 @@ def save_data(data):
         aux.append(obj)
     Produto.objects.bulk_create(aux)
 
-
 def import_csv(request):
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
-        # Lendo arquivo InMemoryUploadedFile
         file = myfile.read().decode('utf-8')
         reader = csv.DictReader(io.StringIO(file))
-        # Gerando uma list comprehension
         data = [line for line in reader]
         save_data(data)
         return HttpResponseRedirect(reverse('produto:produto_list'))
@@ -121,11 +101,8 @@ def import_csv(request):
     template_name = 'produto_import.html'
     return render(request, template_name)
 
-
 def export_csv(request):
-    header = (
-        'importado', 'ncm', 'produto', 'preco', 'estoque', 'estoque_minimo',
-    )
+    header = ('importado', 'ncm', 'produto', 'preco', 'estoque', 'estoque_minimo')
     produtos = Produto.objects.all().values_list(*header)
     with open('fix/produtos_exportados.csv', 'w') as csvfile:
         produto_writer = csv.writer(csvfile)
@@ -135,13 +112,11 @@ def export_csv(request):
     messages.success(request, 'Produtos exportados com sucesso.')
     return HttpResponseRedirect(reverse('produto:produto_list'))
 
-
 def import_xlsx(request):
     filename = 'fix/produtos.xlsx'
     action_import_xlsx(filename)
     messages.success(request, 'Produtos importados com sucesso.')
     return HttpResponseRedirect(reverse('produto:produto_list'))
-
 
 def exportar_produtos_xlsx(request):
     MDATA = datetime.now().strftime('%Y-%m-%d')
@@ -158,11 +133,9 @@ def exportar_produtos_xlsx(request):
         'estoque_minimo',
         'categoria__categoria',
     )
-    columns = ('Importado', 'NCM', 'Produto', 'Preço',
-        'Estoque', 'Estoque mínimo', 'Categoria')
+    columns = ('Importado', 'NCM', 'Produto', 'Preço', 'Estoque', 'Estoque mínimo', 'Categoria')
     response = export_xlsx(model, filename_final, queryset, columns)
     return response
-
 
 def import_csv_with_pandas(request):
     filename = 'fix/produtos.csv'
@@ -182,19 +155,20 @@ def import_csv_with_pandas(request):
     messages.success(request, 'Produtos importados com sucesso.')
     return HttpResponseRedirect(reverse('produto:produto_list'))
 
+
 def compras(request):
     produtos = Produto.objects.filter(estoque__lte=F('estoque_minimo'))
-    return render(request, 'compras.html',  {'produtos': produtos})
-
-def calendário(request):
-    return render(request, 'calendário.html')
-
-def clientes(request):
-    return render(request, 'clientes.html')
+    return render(request, 'compras.html', {'produtos': produtos})
 
 def index(request):
-    # Recupera os produtos com estoque baixo
-    produtos = Produto.objects.filter(estoque__lte=F('estoque_minimo'))
-    
-    # Agora, vamos renderizar a página principal (index.html) e passar os produtos com estoque baixo para o contexto do template
-    return render(request, 'index.html', {'produtos': produtos})
+    produtos_estoque_baixo = Produto.objects.filter(estoque__lt=F('estoque_minimo'))
+    return render(request, 'index.html', {'produtos_estoque_baixo': produtos_estoque_baixo})
+
+def teste(request):
+    produtos_estoque_baixo = Produto.objects.filter(estoque__lt=F('estoque_minimo'))
+    return render(request, 'teste.html', {'produtos_estoque_baixo': produtos_estoque_baixo})
+
+def excluir_notificacao(request, notificacao_id):
+    notificacao = get_object_or_404(Notificacao, pk=notificacao_id)
+    notificacao.delete()
+    return JsonResponse({'message': 'Notificação excluída com sucesso.'})
