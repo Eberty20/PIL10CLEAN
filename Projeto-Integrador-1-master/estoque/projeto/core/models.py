@@ -1,5 +1,5 @@
 from django.db import models
-
+from projeto.produto.models import Produto, Categoria
 
 class TimeStampedModel(models.Model):
     created = models.DateTimeField(
@@ -15,3 +15,6 @@ class TimeStampedModel(models.Model):
 
     class Meta:
         abstract = True
+
+def estoque_baixo(self):
+        return self.estoque <= self.estoque_minimo

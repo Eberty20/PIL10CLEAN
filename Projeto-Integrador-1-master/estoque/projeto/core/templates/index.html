@@ -5,109 +5,95 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- icon -->
-    <link
-    rel="shortcut icon"
-    href="./assets/favicon.ico"
-    type="image/x-icon"/>
-    <!-- title -->
-    <title>L10 CLEAN</title>
-    <!-- CSS -->
-    
-
+    <link rel="shortcut icon" href="{% static 'assets/favicon.ico' %}">
+    <title>L10 Clean Higienização</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/extends.css' %}">
-
-    <!-- JS -->
     <script src="{% static 'js/index.js' %}"></script>
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
-    rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 </head>
 <body>
-<!-- head navbar -->
-<nav class="navbar">
-    <div class="navbar__content max-width mb-0">
-        <a href="{% url 'core:index' %}">
-            <img src="{% static 'assets/LOGO PI.svg' %}" alt="L10 CLEAN" />
-        </a>
-        <h4 class="line typing">SISTEMA L10 CLEAN HIGIENIZAÇÃO </h4>
-    </div>
-</nav>
+    <nav class="navbar">
+        <div class="navbar__content max-width mb-0">
+            <a href="{% url 'core:index' %}">
+                <img src="{% static 'assets/LOGO PI.svg' %}" alt="L10 CLEAN" />
+            </a>
+            <h4 class="line typing">SISTEMA L10 CLEAN HIGIENIZAÇÃO </h4>
+        </div>
+    </nav>
 
-<!-- side navbar -->
-<nav id="sidebar">
-    <div class="container">
-        <div id="datalogo">
-            <a href="#">
-                <img src="{% static 'assets/data.svg' %}" id="" alt="Data">
-            </a>
-        </div>
-        <div id="horalogo">
-            <a href="#">
-                <img src="{% static 'assets/hora.svg' %}" id="" alt="Horário">
-            </a>
-        </div>
-    </div>
-    <!-- hora e data -->
-    <div class="container2">
-        <div id="timer">
-            <div id="display">
-                <span id="data"></span>
-                <hr>
-                <span id="hora"></span>
+    <nav id="sidebar">
+        <div class="container">
+            <div id="datalogo">
+                <a href="#">
+                    <img src="{% static 'assets/data.svg' %}" id="" alt="Data">
+                </a>
+            </div>
+            <div id="horalogo">
+                <a href="#">
+                    <img src="{% static 'assets/hora.svg' %}" id="" alt="Horário">
+                </a>
             </div>
         </div>
-    </div>
-    <!-- notificações -->
-    <div id="note">
-        <hr>
-        <p class="notificaçoes">
-            Notificações
-        </p>
-        <hr>
-    </div>
-    <div id="notas">
-        <h2>Notificações</h2>
-        <ul>
-            {% for produto in produtos %}
-                <li>{{ produto.produto }} - Estoque: {{ produto.estoque }}</li>
+        <div class="container2">
+            <div id="timer">
+                <div id="display">
+                    <span id="data"></span>
+                    <hr>
+                    <span id="hora"></span>
+                </div>
+            </div>
+        </div>
+        <div id="note">
+            <hr>
+            <p class="notificaçoes">
+                Notificações
+            </p>
+            <hr>
+        </div>
+        <div id="notas" class="scroll-horizontal">
+            {% for produto in produtos_estoque_baixo %}
+                <div class="notificacao" id="notificacao{{ produto.pk }}">
+                    <a href="{% url 'produto:compras' %}" class="link-notificacao" data-id="{{ produto.pk }}">
+                        <p>{{ produto.produto }} está com estoque baixo (Estoque: {{ produto.estoque }})</p>
+                    </a>
+                </div>
             {% endfor %}
-        </ul>
-    </div>
+        </div>
+    </nav>
     
-</nav>
-
-<!-- about -->
-<div id="about">
-    <div class="imagens">
-        <a href="{% url 'produto:compras' %}">
-            <img src="{% static 'assets/compras.svg' %}" alt="Compras" id="compras">
-        </a>
+        
+    
+    <div id="about">
+        <div class="imagens">
+            <a href="{% url 'produto:compras' %}">
+                <img src="{% static 'assets/compras.svg' %}" alt="Compras" id="compras">
+            </a>
+        </div>
+        <div class="imagens">
+            <a href="{% url 'produto:produto_list' %}">
+                <img src="{% static 'assets/estoque.svg' %}" alt="Estoque" id="estoque">
+            </a>
+        </div>
+        <div class="imagens">
+            <a href="{% url 'estoque:estoque_entrada_list' %}">
+                <img src="{% static 'assets/entrada.svg' %}" alt="Entrada" id="entrada">
+            </a>
+        </div>
+        <div class="imagens">
+            <a href="{% url 'estoque:estoque_saida_list' %}">
+                <img src="{% static 'assets/saida.svg' %}" alt="Saida" id="saida">
+            </a>
+        </div>
     </div>
-    <div class="imagens">
-        <a href="{% url 'produto:produto_list' %}">
-            <img src="{% static 'assets/estoque.svg' %}" alt="Estoque" id="estoque">
-        </a>
-    </div>
-    <div class="imagens">
-        <a href="{% url 'produto:calendário' %}">
-            <img src="{% static 'assets/calendario.svg' %}" alt="Calendário" id="calendario">
-        </a>
-    </div>
-    <div class="imagens">
-        <a href="{% url 'produto:clientes' %}">
-            <img src="{% static 'assets/clientes.svg' %}" alt="Clientes" id="clientes">
-        </a>
-    </div>
-</div>
-<script src="{% static 'js/index.js' %}"></script>
-
-    <!-- footer -->
+    <script src="{% static 'js/index.js' %}"></script>
     <div id="footer">
-    <p>© 2024 L10 Clean. Todos os direitos reservados.</p>
+        <p>© 2024 L10 Clean. Todos os direitos reservados.</p>
     </div>
 </body>
 </html>
