@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário de Tarefas Diárias</title>
+    <!-- Estilos do FullCalendar -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
+    rel="stylesheet"/>
+</head>
+<body>
+
+<div id="calendar"></div>
+
+<!-- Formulário para adicionar uma nova tarefa -->
+<div id="modal" style="display: none;">
+    <h2>Nova Tarefa</h2>
+    <form id="taskForm">
+        <label for="taskDate">Data:</label>
+        <input type="date" id="taskDate" name="taskDate" required><br><br>
+        <label for="taskTitle">Tarefa:</label>
+        <input type="text" id="taskTitle" name="taskTitle" required><br><br>
+        <button type="submit">Adicionar</button>
+    </form>
+</div>
+
+<!-- Scripts JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            selectable: true,
+            select: function(info) {
+                var modal = document.getElementById('modal');
+                modal.style.display = 'block';
+
+                var taskDateInput = document.getElementById('taskDate');
+                taskDateInput.value = info.startStr;
+            },
+            events: [
+                // Aqui você pode adicionar eventos carregados do servidor, mas para este exemplo, não temos eventos predefinidos
+            ]
+        });
+
+        calendar.render();
+
+        // Adicionar evento de envio de formulário para adicionar uma nova tarefa
+        document.getElementById('taskForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var taskDate = document.getElementById('taskDate').value;
+            var taskTitle = document.getElementById('taskTitle').value;
+
+            calendar.addEvent({
+                title: taskTitle,
+                start: taskDate
+            });
+
+            var modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        });
+    });
+</script>
+
+</body>
+</html>

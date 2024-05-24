@@ -1,0 +1,51 @@
+#about {
+    background-image: linear-gradient(to right,#A7A7A7,#D9D9D9);
+    height: 70vh;
+    width: 70vw;
+    border-radius: 18px 18px 18px 18px;
+    margin-left: 20vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#about .imagens img  
+{width: 25vw;
+    height: 25vh;
+}
+
+
+.imagens img {
+ 
+    transition: transform 0.3s ease;
+}
+
+  .imagens img:hover {
+    transform: scale(1.1);
+  }
+
+
+@media only screen and (max-width: 768px) {
+    #about {
+        background-color: var(--gray);
+        height: 80vh;
+        width: 60vw;
+        border-radius: 18px 0px 0px 18px;
+        margin-left: 40vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+
+    #about .imagens img  
+    {width: 17vw;
+        height: 17vh;
+        margin: auto;
+    }
+
+
+}

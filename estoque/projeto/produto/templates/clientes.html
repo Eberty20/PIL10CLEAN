@@ -1,0 +1,166 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Clientes</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav3.css' %}">
+    <style>
+        /* Estilos simples para facilitar a visualização */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+            max-width: 600px;
+            width: 100%;
+        }
+        input[type="text"], input[type="date"], select {
+            width: calc(50% - 12px);
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        input[type="date"] {
+            width: calc(50% - 16px);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Cadastro de Clientes</h2>
+
+<!-- Formulário para adicionar novo cliente -->
+<form id="formCliente">
+    <div style="display: flex;">
+        <div style="flex: 1;">
+            <label for="nome">Nome:</label><br>
+            <input type="text" id="nome" name="nome" required>
+        </div>
+        <div style="flex: 1; margin-left: 20px;">
+            <label for="telefone">Telefone:</label><br>
+            <input type="text" id="telefone" name="telefone" required>
+        </div>
+    </div>
+    <div style="display: flex;">
+        <div style="flex: 1;">
+            <label for="servico">Serviço:</label><br>
+            <select id="servico" name="servico" required>
+                <option value="">Selecione um serviço</option>
+                <option value="Higienização de Automóvel">Higienização de Automóvel</option>
+                <option value="Higienização de Sofá (4 lugares)">Higienização de Sofá (4 lugares)</option>
+                <option value="Higienização de Sofá (6 lugares)">Higienização de Sofá (6 lugares)</option>
+                <option value="Higienização de Cadeiras">Higienização de Cadeiras</option>
+                <option value="Higienização de Colchão">Higienização de Colchão</option>
+            </select>
+        </div>
+        <div style="flex: 1; margin-left: 20px;">
+            <label for="data">Data:</label><br>
+            <input type="date" id="data" name="data" required>
+        </div>
+    </div>
+    <button type="submit">Adicionar Cliente</button>
+</form>
+
+<!-- Tabela para exibir a lista de clientes -->
+<h3>Lista de Clientes</h3>
+<input type="text" id="pesquisar" placeholder="Pesquisar por nome...">
+<table id="tabelaClientes">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Serviço</th>
+            <th>Data</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Os clientes serão adicionados dinamicamente aqui -->
+    </tbody>
+</table>
+
+<script>
+    // Simulando uma lista de clientes
+    let clientes = [];
+
+    // Função para adicionar um cliente
+    document.getElementById("formCliente").addEventListener("submit", function(event) {
+        event.preventDefault();
+        let nome = document.getElementById("nome").value;
+        let telefone = document.getElementById("telefone").value;
+        let servico = document.getElementById("servico").value;
+        let data = document.getElementById("data").value;
+        clientes.push({ nome, telefone, servico, data });
+        atualizarTabela();
+        // Limpar os campos após adicionar o cliente
+        document.getElementById("formCliente").reset();
+    });
+
+    // Função para atualizar a tabela de clientes
+    function atualizarTabela() {
+        let tabela = document.getElementById("tabelaClientes").getElementsByTagName("tbody")[0];
+        tabela.innerHTML = "";
+        clientes.sort((a, b) => new Date(a.data) - new Date(b.data));
+        clientes.forEach((cliente, index) => {
+            let row = tabela.insertRow();
+            let cellNome = row.insertCell(0);
+            let cellTelefone = row.insertCell(1);
+            let cellServico = row.insertCell(2);
+            let cellData = row.insertCell(3);
+            let cellAcoes = row.insertCell(4);
+            cellNome.textContent = cliente.nome;
+            cellTelefone.textContent = cliente.telefone;
+            cellServico.textContent = cliente.servico;
+            cellData.textContent = cliente.data;
+            // Botão de exclusão
+            let btnExcluir = document.createElement("button");
+            btnExcluir.textContent = "Excluir";
+            btnExcluir.onclick = function() {
+                clientes.splice(index, 1);
+                atualizarTabela();
+            };
+            cellAcoes.appendChild(btnExcluir);
+        });
+    }
+
+    // Função para filtrar clientes conforme o nome digitado na pesquisa
+    document.getElementById("pesquisar").addEventListener("keyup", function() {
+        let input, filtro, tabela, linhas, celula, valorCelula;
+        input = document.getElementById("pesquisar");
+        filtro = input.value.toUpperCase();
+        tabela = document.getElementById("tabelaClientes");
+        linhas = tabela.getElementsByTagName("tr");
+        for (let i = 0; i < linhas.length; i++) {
+            celula = linhas[i].getElementsByTagName("td")[0];
+            if (celula) {
+                valorCelula = celula.textContent || celula.innerText;
+                if (valorCelula.toUpperCase().indexOf(filtro) > -1) {
+                    linhas[i].style.display = "";
+                } else {
+                    linhas[i].style.display = "none";
+                }
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>
