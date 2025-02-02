@@ -1,6 +1,6 @@
 <h1 align="center">L-10 Clean</h1>
 
-![Imagem do projeto finalizado](PIL10CLEAM/estoque/img/l10.png)
+![Imagem do projeto finalizado](PIL10CLEAN/estoque/img/l10.png)
 
 
 <h4 align="center"><a href="https://l10clean.vercel.app">Confira o projeto aqui</a></h4>
