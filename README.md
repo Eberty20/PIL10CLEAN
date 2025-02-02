@@ -2,6 +2,8 @@
 
 ![Imagem do projeto finalizado](estoque/img/l10.png)
 
+![Demonstração](estoque/img/projeto.mp4)
+
 
 <h4 align="center"><a href="https://l10clean.vercel.app">Confira o projeto aqui</a></h4>
 
